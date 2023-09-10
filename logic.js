@@ -17,7 +17,7 @@ function playRound(playerSelection, computerSelection) {
 		if (playerSelection == "rock" && computerSelection == "scissors") {
 			return "You Win! Rock beats Scissors";
 		} else if (playerSelection == "rock" && computerSelection == "paper") {
-			return "You lose! Paper beats rock";
+			return "You Lose! Paper beats rock";
 		}
 
 		if (playerSelection == "scissors" && computerSelection == "paper") {
@@ -35,7 +35,38 @@ function playRound(playerSelection, computerSelection) {
 	return "It's a tie!";
 }
 
-const playerSelection = "ROCK";
-const computerSelection = getComputerChoice();
-console.log("computer selection is " + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+	// set up players
+	let playerPoints = 0;
+	let computerPoints = 0;
+
+	// while the players have less than 5 points
+	while (playerPoints < 5 && computerPoints < 5) {
+		let playerSelection = prompt("📃 or ✂️ or 🪨?");
+		let computerSelection = getComputerChoice();
+		let roundWinner = playRound(playerSelection, computerSelection);
+
+		if (roundWinner.includes("You Win!")) {
+			playerPoints++;
+			// if (player <= 5) {
+			// 	console.log("YOU WIN!");
+			// 	return;
+		} else if (roundWinner.includes("You Lose!")) {
+			computerPoints++;
+			// if (computer <= 5) {
+			// 	console.log("Computer WON! YOU LOSE!");
+			// 	return;
+		}
+		console.log(roundWinner);
+		console.log("player points " + playerPoints);
+		console.log("computer points " + computerPoints);
+	}
+
+	if (computerPoints == 5) {
+		console.log("Game over! Computer Wins! 🤖");
+	} else if (playerPoints == 5) {
+		console.log("Game over! You Win! 🎉🎉🎉");
+	}
+}
+
+game();
