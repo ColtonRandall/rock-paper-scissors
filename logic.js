@@ -36,11 +36,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-	// set up players
 	let playerPoints = 0;
 	let computerPoints = 0;
 
-	// while the players have less than 5 points
 	while (playerPoints < 5 && computerPoints < 5) {
 		let playerSelection = prompt("📃 or ✂️ or 🪨?");
 		let computerSelection = getComputerChoice();
@@ -48,14 +46,8 @@ function game() {
 
 		if (roundWinner.includes("You Win!")) {
 			playerPoints++;
-			// if (player <= 5) {
-			// 	console.log("YOU WIN!");
-			// 	return;
 		} else if (roundWinner.includes("You Lose!")) {
 			computerPoints++;
-			// if (computer <= 5) {
-			// 	console.log("Computer WON! YOU LOSE!");
-			// 	return;
 		}
 		console.log(roundWinner);
 		console.log("player points " + playerPoints);
