@@ -1,73 +1,76 @@
 
-
-/* TODO:
-	- Add logic to each button (as done for Rock below)
-	- Fix playRound() logic to not hard code playerSelection or computerSelection
-		within the method lines 35/36)
-	- Add div to show current score for each round.
-*/
-
 const displayResults = document.querySelector('#results');
 
-//Add event listeners to each button that call playRound()
+// Add event listeners to each button that call playRound()
 const chooseRock = document.querySelector('#rock');
 const choosePaper = document.querySelector('#paper');
-const chooseScissors = document.querySelector('#scissors');
+const chooseScissors = document.querySelector('#scissors'); 
+
+// Create computer selection
+let computerSelection;
+function getComputerChoice() {
+	let choice = Math.round(Math.random() * 2);
+	if (choice === 0) {
+		return "rock";
+	} else if (choice === 1) {
+		return "paper";
+	} else if (choice === 2) {
+		return "scissors";
+	}
+}
 
 chooseRock.addEventListener('click', () => {
-	playRound();
+	computerSelection = getComputerChoice();
+	playerSelection = 'rock';
+	playRound(playerSelection, computerSelection);
 	console.log('successfully chose rock');
+	console.log('computer: ' + computerSelection);
+	console.log('player: ' + playerSelection);
 });
 
 choosePaper.addEventListener('click', () => {
-	playRound();
+	computerSelection = getComputerChoice();
+	playerSelection = 'paper';
+	playRound(playerSelection, computerSelection);
 	console.log('successfully chose paper');
 })
 
 chooseScissors.addEventListener('click', () =>{
-	playRound();
+	computerSelection = getComputerChoice();
+	playerSelection = 'scissors';
+	playRound(playerSelection, computerSelection);
 	console.log('successfully chose scissors');
 })
 
 
 
-
-// function getComputerChoice() {
-// 	let choice = Math.round(Math.random() * 2);
-// 	if (choice === 0) {
-// 		return "rock";
-// 	} else if (choice === 1) {
-// 		return "paper";
-// 	} else if (choice === 2) {
-// 		return "scissors";
-// 	}
-// }
-
-
-
-function playRound() {
-	let playerSelection = 'rock';
-	let computerSelection = 'paper';
+function playRound(playerSelection, computerSelection) {
 		if (playerSelection == "rock" && computerSelection == "scissors") {
 			displayResults.textContent = "You Win! Rock beats Scissors";
 		} else if (playerSelection == "rock" && computerSelection == "paper") {
 			displayResults.textContent =  "You Lose! Paper beats rock";
+		} else if (playerSelection == "rock" && computerSelection == "rock") {
+			displayResults.textContent =  "It's a tie!";
 		}
 
 		if (playerSelection == "scissors" && computerSelection == "paper") {
 			displayResults.textContent =  "You Win! Scissors beats paper";
 		} else if (playerSelection == "scissors" && computerSelection == "rock") {
 			displayResults.textContent =  "You Lose! Rock beats paper";
+		} else if (playerSelection == "scissors" && computerSelection == "scissors") {
+			displayResults.textContent =  "It's a tie!";
 		}
 
 		if (playerSelection == "paper" && computerSelection == "rock") {
 			displayResults.textContent =  "You Win! Paper beats rock";
 		} else if (playerSelection == "paper" && computerSelection == "scissors") {
 			displayResults.textContent =  "You Lose! Scissors beats paper";
-		
+		} else if (playerSelection == "paper" && computerSelection == "paper") {
+			displayResults.textContent =  "It's a tie!";
+		}
+		return "It's a tie!";
 	}
-	return "It's a tie!";
-}
+
 
 // function game() {
 // 	let playerPoints = 0;
