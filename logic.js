@@ -11,10 +11,24 @@ const displayResults = document.querySelector('#results');
 
 //Add event listeners to each button that call playRound()
 const chooseRock = document.querySelector('#rock');
-	chooseRock.addEventListener('click', () => {
-		playRound();
-		console.log('success');
-	});
+const choosePaper = document.querySelector('#paper');
+const chooseScissors = document.querySelector('#scissors');
+
+chooseRock.addEventListener('click', () => {
+	playRound();
+	console.log('successfully chose rock');
+});
+
+choosePaper.addEventListener('click', () => {
+	playRound();
+	console.log('successfully chose paper');
+})
+
+chooseScissors.addEventListener('click', () =>{
+	playRound();
+	console.log('successfully chose scissors');
+})
+
 
 
 
