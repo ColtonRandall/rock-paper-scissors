@@ -56,78 +56,78 @@ chooseScissors.addEventListener('click', () =>{
 
 // If the player chooses rock, play the game with rock
 function rockResults(){
-	if (playerSelection == "rock" && computerSelection == "scissors") {
+	if (computerSelection == "scissors") {
+		playerScore++;
+		displayPlayerScore.textContent = 'Your score: ' + playerScore;
 		displayResults.textContent = "You Win! Rock beats Scissors";
-		displayPlayerScore.textContent = 'Your score: ' + playerScore++;
-	} else if (playerSelection == "rock" && computerSelection == "paper") {
+	} else if (computerSelection == "paper") {
+		computerScore++;
+		displayComputerScore.textContent = 'Computer\'s score: ' + computerScore;
 		displayResults.textContent =  "You Lose! Paper beats rock";
-		displayComputerScore.textContent = 'Computer\'s score: ' + computerScore++;
-	} else if (playerSelection == "rock" && computerSelection == "rock") {
+	} else if (computerSelection == "rock") {
 		displayResults.textContent =  "It's a tie!";
 	}
 }
 
 // If the player chooses scissors, play the game with scissors
 function scissorsResults(){
-	if (playerSelection == "scissors" && computerSelection == "paper") {
+	if (computerSelection == "paper") {
+		playerScore++;
 		displayResults.textContent =  "You Win! Scissors beats paper";
-		displayPlayerScore.textContent = 'Your score: ' + playerScore++;
-	} else if (playerSelection == "scissors" && computerSelection == "rock") {
+		displayPlayerScore.textContent = 'Your score: ' + playerScore;
+	} else if (computerSelection == "rock") {
+		computerScore++;
 		displayResults.textContent =  "You Lose! Rock beats paper";
-		displayComputerScore.textContent = 'Computer\'s score: ' + computerScore++;
-	} else if (playerSelection == "scissors" && computerSelection == "scissors") {
+		displayComputerScore.textContent = 'Computer\'s score: ' + computerScore;
+	} else if (computerSelection == "scissors") {
 		displayResults.textContent =  "It's a tie!";
 	}
 } 
 
 // If the player chooses paper, play the game with scissors
 function paperResults(){
-	if (playerSelection == "paper" && computerSelection == "rock") {
+	if (computerSelection == "rock") {
+		playerScore++;
 		displayResults.textContent =  "You Win! Paper beats rock";
-		displayPlayerScore.textContent = 'Your score: ' + playerScore++;
-	} else if (playerSelection == "paper" && computerSelection == "scissors") {
+		displayPlayerScore.textContent = 'Your score: ' + playerScore;
+	} else if (computerSelection == "scissors") {
+		computerScore++;
 		displayResults.textContent =  "You Lose! Scissors beats paper";
-		displayComputerScore.textContent = 'Computer\'s score: ' + computerScore++;
-	} else if (playerSelection == "paper" && computerSelection == "paper") {
+		displayComputerScore.textContent = 'Computer\'s score: ' + computerScore;
+	} else if (computerSelection == "paper") {
 		displayResults.textContent =  "It's a tie!";
 	}
 }
 
+// Player clicks a button and chooses
 function playRound(playerSelection) {
 	if(playerSelection == 'rock'){
 		rockResults();
+		determineWinner();
 	} else if (playerSelection == 'scissors'){
 		scissorsResults();
+		determineWinner();
 	} else if (playerSelection == 'paper'){
 		paperResults();
+		determineWinner();
 	}
-		return "It's a tie!";
+}
+
+// Limit the game to 5 points
+function determineWinner(){
+	if(playerScore >= 5){
+		displayResults.textContent = 'YOU WIN THE GAME! 😊';
+		resetScores();
+	} else if(computerScore >= 5){
+		displayResults.textContent = 'COMPUTER WINS THE GAME! 👾';
+		resetScores();
+	}
 }
 
 
-// function game() {
-// 	let playerPoints = 0;
-// 	let computerPoints = 0;
-
-// 	while (playerPoints < 5 && computerPoints < 5) {
-// 		let playerSelection = prompt("📃 or ✂️ or 🪨?");
-// 		let computerSelection = getComputerChoice();
-// 		let roundWinner = playRound(playerSelection, computerSelection);
-
-// 		if (roundWinner.includes("You Win!")) {
-// 			playerPoints++;
-// 		} else if (roundWinner.includes("You Lose!")) {
-// 			computerPoints++;
-// 		}
-// 		console.log(roundWinner);
-// 		console.log("player points " + playerPoints);
-// 		console.log("computer points " + computerPoints);
-// 	}
-
-// 	if (computerPoints == 5) {
-// 		console.log("Game over! Computer Wins! 🤖");
-// 	} else if (playerPoints == 5) {
-// 		console.log("Game over! You Win! 🎉🎉🎉");
-// 	}
-// }
-
+function resetScores(){
+	playerScore = 0;
+	computerScore = 0;
+	displayPlayerScore.textContent = 'Your score: ' + playerScore;
+	displayComputerScore.textContent = 'Computer\'s score: ' + computerScore;
+}
